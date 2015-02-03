@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GlanceTweet</string>
+
+    <string name="action_logout">Logout</string>
+    <string name="action_about">About</string>
+    <string name="ok">OK</string>
+    <string name="dialog_about"><p>Thank you for using my app. If you have comments or questions</p>
+        contact me on twitter.com/glance_able</string>
+    <string name="action_fetch">Fetch now</string>
+    <string name="action_mark_all_read">Mark all read</string>
+    <string name="connect_pocket">Connect Pocket</string>
+
+</resources>
