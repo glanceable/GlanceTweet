@@ -1,0 +1,12 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="account">
+
+    <EditTextPreference
+        android:key="fetch_frequency"
+        android:title="How often do we check for new tweets per hour">4</EditTextPreference>
+    <EditTextPreference
+        android:key="notify_frequency"
+        android:title="How many new tweets do we save before sending you a notification">20</EditTextPreference>
+
+</PreferenceScreen> 

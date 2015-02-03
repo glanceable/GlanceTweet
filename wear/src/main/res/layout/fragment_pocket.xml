@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:padding="0px"
+    android:background="@android:color/background_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_dark">
+
+        <android.support.wearable.view.CircledImageView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:src="@drawable/pocket_sm"
+            app:circle_color="@color/blue"
+            app:circle_radius="50dp"
+            app:circle_radius_pressed="40dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id = "@+id/imageView"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save to Pocket"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/imageView" />
+    </RelativeLayout>
+
+</LinearLayout>

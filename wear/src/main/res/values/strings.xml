@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GlanceTweet</string>
+    <string name="delete">Delete</string>
+    <string name="desc_all_day">%s(All day)</string>
+    <string name="desc_time_period">%1$s(%2$s - %3$s)</string>
+    <string name="delete_successful">Event deleted</string>
+    <string name="delete_unsuccessful">Unable to delete event</string>
+    <string name="mark_all_read">Mark all read</string>
+
+    <string name="welcome">Please open the app on your phone first and connect your Twitter account</string>
+    <string name="no_tweets">All tweets are read!</string>
+
+</resources>
