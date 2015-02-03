@@ -136,10 +136,6 @@ public class TweetListenerService extends WearableListenerService implements Goo
                     .setValue(event.getValue())
                     .build());
             Log.d(Constants.TAG, "sending analytics ");
-        } else if (messageEvent.getPath().equals(Constants.PATH_POCKET_SAVE)) {
-//            String url = new String(messageEvent.getData());
-//            Log.d(Constants.TAG, "Posting to pocket " + url);
-//            Utils.saveTweetToPocket(url, settings.getString(Constants.POCKET_ACCESS_TOKEN, ""));
         }
     }
 
@@ -164,14 +160,6 @@ public class TweetListenerService extends WearableListenerService implements Goo
         Wearable.MessageApi.removeListener(mGoogleApiClient, this);
         mGoogleApiClient.disconnect();
     }
-
-    /**
-     * Returns true if Pocket is installed on this device.
-     */
-    protected static boolean isPocketInstalled(Context context) {
-        return getPocketPackageName(context) != null;
-    }
-
     /**
      * This looks for all possible Pocket versions and returns the package name of one if it is installed.
      * Otherwise returns null if Pocket is not installed.

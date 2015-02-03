@@ -148,21 +148,4 @@ public class ShowTweetsActivity extends Activity {
         reporter.close();
     }
 
-//    @Override
-//    public void onStop() {
-//
-//        Log.d(TAG, "onStop");
-//        if (pagerAdapter != null) {
-//            reporter.report("wear", "read", Integer.toString(pagerAdapter.getReadIndex()));
-//            if (pagerAdapter.getReadIndex() > 0) {
-//                for (int i = 0; i < pagerAdapter.getReadIndex()+1; i++) {
-//                    TweetItem tweet = pagerAdapter.getTweetItems().get(i);
-//                    tweet.setRead(true);
-//                    // remove all data from the tweet except the id. Avoid deletion because we would see deleted tweets as new.
-//                    db.update(TABLE_NAME, tweet.toContentValues(), "id=" + tweet.getId(), null);
-//                }
-//            }
-//        }
-//    }
-
 }

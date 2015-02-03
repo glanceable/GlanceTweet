@@ -55,11 +55,6 @@ public class TweetSender {
         }
 
         for (TweetItem item : tweetItems) {
-//            if (item.getUrlEntities() != null && item.getUrlEntities().length > 0) {
-//                Log.i(TAG, item.getUrlEntities()[0]);
-//            } else {
-//                Log.i(TAG, "no url");
-//            }
             if (item.getBitmap() != null) {
                 Log.i(TAG, "putting asset " + item.getId());
                 dataMap.getDataMap().putAsset(Long.toString(item.getId()), createAssetFromBitmap(item.getBitmap()));

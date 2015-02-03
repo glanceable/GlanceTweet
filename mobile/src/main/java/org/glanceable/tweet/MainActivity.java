@@ -88,8 +88,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void sendConfigUpdateMessage(String key, DataMap config) {
-        Random rand = new Random();
-//        config.putInt("cachebuster", rand.nextInt());
+
         PutDataMapRequest dataMap = PutDataMapRequest.create(Constants.GENERIC_CONFIG_PATH);
         dataMap.getDataMap().putAll(config);
         PutDataRequest request = dataMap.asPutDataRequest();
@@ -117,12 +116,9 @@ public class MainActivity extends ActionBarActivity
         Uri data = this.getIntent().getData();
         if (data != null) {
             Log.d(TAG, data.getScheme());
-            if (data.getScheme().equals(Constants.POCKET_REDIRECT_SCHEME)) {
-                processPocketAuthResult(data);
 
-            } else {
-                processAuthResult(data);
-            }
+            processAuthResult(data);
+
             SetupUi();
         } else {
             accessToken = Utils.loadAccessToken(settings);
@@ -159,42 +155,6 @@ public class MainActivity extends ActionBarActivity
             sendConfigUpdateMessage(Constants.KEY_POCKET_CONNECTED, config);
             settings.edit().putBoolean(Constants.KEY_POCKET_CONNECTED, true).apply();
         }
-    }
-
-    private void processPocketAuthResult(final Uri data) {
-        Log.d(TAG, "processPocketAuth");
-        new AsyncTask<Void, Void, Void>() {
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-
-                try {
-                    HttpResponse response = Utils.exchangePocketAccessToken(settings.getString(Constants.POCKET_REQ_TOKEN, ""));
-
-                    String content = null;
-                    content = CharStreams.toString(new InputStreamReader(response.getEntity().getContent()));
-
-                    Uri uri=Uri.parse("http://example.com/?" + content);
-                    String access_token = uri.getQueryParameter("access_token");
-//                    Log.d(Constants.TAG, "access token: " + access_token);
-                    settings.edit().putString(Constants.POCKET_ACCESS_TOKEN, access_token).apply();
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Pocket connected.", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    DataMap config = new DataMap();
-                    config.putBoolean(Constants.KEY_POCKET_CONNECTED, true);
-                    sendConfigUpdateMessage(Constants.KEY_POCKET_CONNECTED, config);
-                    tracker.send(new HitBuilders.EventBuilder().setCategory("account").setAction("connect_pocket").build());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-        }.execute();
-
     }
 
     private void SetupUi() {
@@ -266,35 +226,6 @@ public class MainActivity extends ActionBarActivity
             tracker.send(new HitBuilders.EventBuilder().setCategory("action").setAction("mark_all_read").build());
             markAllRead();
         }
-//        else if (id == R.id.action_connect_pocket) {
-//            new AsyncTask<Void, Void, Void>() {
-//
-//                @Override
-//                protected Void doInBackground(Void... voids) {
-//
-//                    try {
-//                        HttpResponse resp = Utils.getPocketRequestToken();
-//                        InputStream stream = null;
-//                        stream = resp.getEntity().getContent();
-//                        String content = CharStreams.toString(new InputStreamReader(stream));
-//                        String reqToken = content.split("=")[1];
-//                        settings.edit().putString(Constants.POCKET_REQ_TOKEN, reqToken).apply();
-//                        Intent intent = new Intent(Intent.ACTION_VIEW);
-//                        String authUrl = String.format("https://getpocket.com/auth/authorize?" +
-//                                        "request_token=%s&redirect_uri=%s", reqToken,
-//                                URLEncoder.encode(Constants.POCKET_REDIRECT_URL, "UTF-8"));
-//                        Log.d(Constants.TAG, "browse " + authUrl);
-//                        intent.setData(Uri.parse(authUrl));
-//                        startActivity(intent);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    return null;
-//                }
-//            }.execute();
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -410,18 +341,11 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onResume() {
         super.onResume();
-
-//        PreferenceScreen root = ((PreferenceFragment)getFragmentManager().findFragmentById(R.id.fragment)).getPreferenceScreen();
-//        root.getSharedPreferences()
-//                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-//        PreferenceScreen root = ((PreferenceFragment)getFragmentManager().findFragmentById(R.id.fragment)).getPreferenceScreen();
-//        root.getSharedPreferences()
-//                .unregisterOnSharedPreferenceChangeListener(this);
     }
 }
